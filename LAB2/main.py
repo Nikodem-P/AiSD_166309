@@ -30,6 +30,15 @@ class LinkedList:
                 break
             node = node.next
             print(f' -> ', end='')
+        return ''
+
+    def __len__(self):
+        node = self.head
+        length = 0
+        while node is not None:
+            length += 1
+            node = node.next
+        return length
 
     def push(self, value: Any) -> None:
         new_node = Node()
@@ -66,7 +75,7 @@ class LinkedList:
         self.tail.next = None
         return tail_node_val
 
-    def node(self, at: int) -> Any:
+    def node(self, at: int) -> Node:
         if self.head is None:
             return None
         node = self.head
@@ -74,7 +83,19 @@ class LinkedList:
             if node is None:
                 return None
             node = node.next
-        return node.next.value
+        return node
+
+    @staticmethod
+    def insert(value: Any, after: Node) -> None:
+        new_node = Node()
+        new_node.value = value
+        new_node.next = after.next
+        after.next = new_node
+
+    @staticmethod
+    def remove(after: Node) -> None:
+        after.next = after.next.next
+
 
 
 list_ = LinkedList()
@@ -84,10 +105,18 @@ list_.push(3)
 list_.push(7)
 list_.push(7)
 list_.push('abc')
-list_.__str__()
+print(list_)
 print(f'\nUsuniety element z poczatku listy: {list_.pop()}')
-list_.__str__()
+print(list_)
 print(f'\nUsuniety element z konca listy: {list_.pop_back()}')
-list_.__str__()
-print(f'\nObiekt trzeci: {list_.node(3)}')
+print(list_)
+print(f'\nObiekt trzeci: {list_.node(2)}')
+print(f'Obiekt pierwszy: {list_.node(0)}')
+list_.insert(99, list_.head)
+print(list_)
+list_.remove(list_.head)
+print(list_)
+print(len(list_))
+
+
 
