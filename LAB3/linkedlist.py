@@ -19,17 +19,18 @@ class LinkedList:
         self.tail = None
 
     def __str__(self):
+        str_: str = ''
         if self.head is None:
-            print(None)
+            str_ += None
             return None
         node = self.head
         while True:
-            print(f'{node.value}', end='')
+            str_ += f'{node.value}'
             if node == self.tail:
                 break
             node = node.next
-            print(f' -> ', end='')
-        return ''
+            str_ += f' -> '
+        return str_
 
     def __len__(self):
         node = self.head
@@ -61,6 +62,11 @@ class LinkedList:
     def pop(self) -> Any:
         if self.head is None:
             return None
+        if self.head == self.tail:
+            head_node_val = self.head.value
+            self.head = None
+            self.tail = None
+            return head_node_val
         head_node_val = self.head.value
         self.head = self.head.next
         return head_node_val
@@ -68,6 +74,11 @@ class LinkedList:
     def pop_back(self) -> Any:
         if self.head is None:
             return None
+        if self.head == self.tail:
+            tail_node_val = self.head.value
+            self.head = None
+            self.tail = None
+            return tail_node_val
         node = self.head
         while node.next != self.tail:
             node = node.next
