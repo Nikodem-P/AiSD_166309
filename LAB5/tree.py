@@ -70,3 +70,4 @@ class Tree:
         dot = graphviz.Digraph('Graph')
         self.for_each_deep_first(lambda x: dot.node(str(x), str(x)))
         self.for_each_deep_first(lambda x: dot.edges([(str(x), str(a)) for a in x.children]))
+        print(dot.source)
