@@ -27,7 +27,6 @@ class ListaWpis:
         nowy.nast = self
         nowy.poprz = self.poprz
         self.poprz = nowy
-        # if nowy.poprz is not None:
         nowy.poprz.nast = nowy
 
 
@@ -92,12 +91,14 @@ class Lista_2k_2w:
             return element
 
     def usun_pierwszy(self) -> str:
+        # Metoda zakłada, że lista nie jest pusta
         wart = self.przed_pie.nast.wart
         self.przed_pie.nast = self.przed_pie.nast.nast
         self.przed_pie.nast.poprz = self.przed_pie
         return wart
 
     def usun_ostatni(self) -> str:
+        # Metoda zakłada, że lista nie jest pusta
         wart = self.za_ost.poprz.wart
         self.za_ost.poprz = self.za_ost.poprz.poprz
         self.za_ost.poprz.nast = self.za_ost
